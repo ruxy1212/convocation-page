@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Convocation</title>
+  <link rel="shortcut icon" href="../img/icon.jpg" type="image/jpeg">
+  <meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Happy Matriculation Princesa" />
+	<meta property="og:site_name" content="Happy Matriculation Princesa" />
+	<meta property="og:image" content="../img/icon.jpg" />
+	<meta property="og:image:type" content="image/jpeg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+  <script>
+    var msg_ = "Congratulations on your convocation ceremony";
+    var winSize = window.innerWidth;
+  </script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url(multiple.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    .scene_ {
+        margin: 0;
+        overflow: hidden;
+        cursor:grab;
+        height: 100vh !important;
+        width: 100vw !important;
+        background-image: url(single.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    canvas {
+      display: block;
+    }
+    .label {
+        text-align: center;
+        width: 100%;
+        font-size: 32px;
+        color: rgb(231, 56, 12);
+        font-family: sans-serif;
+    }
+    .label .head_ {
+        font-weight: bold;
+        margin: 30px 0;
+    }
+    .label .foot_ {
+        font-weight: bold;
+        font-style: italic;
+        margin: 20px 0;
+    }
+    .unsee {
+        display: none;
+    }
+    .stage_ .canvas_ {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px 4px #888;
+        color: #684dff;
+        background-image: url(../img/bgwhite.png);
+        cursor: pointer;
+    }
+  </style>
+  <style>
+    .container {
+  overflow: hidden;
+  .slider {
+    animation: slidein 30s linear infinite;
+    white-space: nowrap;
+    .logos {
+      width: 100%;
+      display: inline-block;
+      margin: 0px 0;
+      .fab {
+        width: calc(100% / 5);
+        animation: fade-in 0.5s 
+          cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+      }
+    }
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fab{
+  width: calc(100% / 5) !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+  .slider .item {
+      width: calc(100% / 5) !important;
+      height: 45vh !important;
+  }
+  @media screen and (max-width: 991px) {
+    .slider .item {
+      width: calc(100% / 4) !important;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .slider .item {
+      width: calc(100% / 3) !important;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .slider .item {
+      width: 60% !important;
+    }
+  }
+  </style>
+  <style>
+    .slider {
+      padding-block: 12px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      position: relative;
+      /* mask-image: linear-gradient(to right, transparent 40% 100%, #000, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000, transparent); */
+    }
+
+.list {
+  display: flex;
+  width: calc(
+    var(--width) * var(--imageQuantity) * 2
+  ); /* Double the width for seamless looping */
+  gap: calc(var(--width) / 4);
+  animation: autoScroll 20s linear infinite;
+}
+
+.list:hover {
+  animation-play-state: paused !important;
+}
+
+.item {
+  width: var(--width);
+  height: var(--height);
+  flex-shrink: 0;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  transition: filter 0.5s ease-in-out;
+}
+
+@keyframes autoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
+  }
+}
+
+.slider[reverse="true"] .list {
+  animation: reverseScroll 20s linear infinite;
+}
+
+@keyframes reverseScroll {
+  0% {
+    transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slider:hover .item img {
+  filter: grayscale(1);
+}
+
+.slider .item:hover img {
+  filter: grayscale(0);
+}
+.slider .item img{
+  object-fit: cover;
+  border-radius: 12px;
+}
+  </style>
+</head>
+<body>
+    <div class="scene_ unsee">
+      <div class="slider" style="--width: 150px; --height: 50px; --imageQuantity: 10">
+        <div class="list">
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+              alt=""
+            />
+          </div>
+          <!-- Duplicate items for seamless looping -->
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+              alt=""
+            />
+          </div>
+          <div class="item">
+            <img
+              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- slider 2 -->
+        <div
+          class="slider"
+          reverse="true"
+          style="--width: 200px; --height: 200px; --imageQuantity: 7"
+        >
+          <div class="list">
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+                alt=""
+              />
+            </div>
+            <!-- Duplicate items for seamless looping -->
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+                alt=""
+              />
+            </div>
+            <div class="item">
+              <img
+                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      <!-- <div class="container h-100">
+        <div class="row align-items-center h-100">
+          <div class="container rounded">
+            <h1 class="text-center">Featured in:</h1>
+            <div class="slider">
+              <div class="logos">
+                <i class="fab fa-js fa-4x"></i>
+                <i class="fab fa-linkedin-in fa-4x"></i>
+                <i class="fab fa-dribbble fa-4x"></i>
+                <i class="fab fa-medium-m fa-4x"></i>
+                <i class="fab fa-github fa-4x"></i>
+                <div class="fab d-flex justify-content-center align-items-center p-3 bg-white">
+                  <p>Congratulations on your Convocation, mamita!</p>
+                  <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
+                  <p>Here's to many more achievements and making memories together!</p>
+                </div>
+              </div>
+              <div class="logos">
+                <i class="fab fa-js fa-4x"></i>
+                <i class="fab fa-linkedin-in fa-4x"></i>
+                <i class="fab fa-dribbble fa-4x"></i>
+                <i class="fab fa-medium-m fa-4x"></i>
+                <i class="fab fa-github fa-4x"></i>
+                <div class="fab d-flex justify-content-center align-items-center p-3 bg-white">
+                  <p>Congratulations on your Convocation, mamita!</p>
+                  <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
+                  <p>Here's to many more achievements and making memories together!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="stage_">
+        <canvas class="canvas_" ></canvas>
+    </div>
+    <script>
+      var stage_ = document.querySelector('.stage_');
+      var scene_ = document.querySelector('.scene_'), canvas_ = stage_.querySelector('.canvas_'), multiplier_ = 1;
+      var sy1_, sy2_, sy3_, sy4_, sy5_;
+    if(winSize < 600){
+        msg_ = "Congratz on your convoc ation ceremony";
+        canvas_.width = Math.floor(winSize*0.8);
+        multiplier_ = 0.6;
+        canvas_.height = 600;
+        sy1_ = 40; sy2_ = 50; sy3_ = 60; sy4_ = 70; sy5_ = 80;
+    }else{
+        canvas_.width = 630;
+        canvas_.height = 450;
+        sy1_ = 50; sy2_ = 60; sy3_ = 80; sy4_ = 90; sy5_ = 100;
+    }
+    let ctx = stage_.querySelector('canvas').getContext('2d');
+    dashLen = 220*multiplier_, dashOffset = dashLen, speed = 45,
+    txt = msg_, x = 20*multiplier_, y = 60*multiplier_, i = 0, lineMax = canvas_.width - 30; //"STROKE-ON CANVAS"
+
+    ctx.font = "50px Comic Sans MS, cursive, TSCu_Comic, sans-serif"; 
+    ctx.lineWidth = 5*multiplier_; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
+    ctx.strokeStyle = ctx.fillStyle = "#5d44e7";
+
+    (function loop() {
+        ctx.clearRect(0, y-sy1_, stage_.width, sy5_); // Clear the area where characters are drawn
+        ctx.setLineDash([dashLen - dashOffset, dashOffset - speed]); // create a long dash mask
+        dashOffset -= speed; // reduce dash length
+        ctx.strokeText(txt[i], x, y); // stroke letter
+
+        if (dashOffset > 0) {
+            requestAnimationFrame(loop); // animate
+        } else {
+            ctx.fillText(txt[i], x, y); // fill final letter
+            dashOffset = dashLen; // prep next char
+            x += ctx.measureText(txt[i]).width + ctx.lineWidth * Math.random();
+            // Check if the width exceeds the lineMax
+            if (x > lineMax) {
+                // Check if the next character is a space
+                if (txt[i] !== ' ' && txt[i + 1] !== ' ') {
+                    // Backtrack to the last space character
+                    while (i >= 0 && txt[i] !== ' ') {
+                        i--;
+                        let letterWidth = ctx.measureText(txt[i]).width; 
+                        x -= letterWidth + ctx.lineWidth; // Move back by the width of the letter
+                        ctx.clearRect(x, y-sy2_, letterWidth+ctx.lineWidth, sy4_);
+                    }
+                    // Move to the next line
+                    x = 21; // Reset x to the beginning of the line
+                    y += sy3_; // Move down to the next line
+                } else {
+                    // Move to the next line without breaking the word
+                    x = 21; // Reset x to the beginning of the line
+                    y += sy3_; // Move down to the next line
+                }
+                // Clear the area where characters are drawn for the next line
+                ctx.clearRect(0, y-sy2_, stage_.width, sy5_);
+            }
+            ctx.setTransform(1, 0, 0, 1, 0, 3 * Math.random()); // random y-delta
+            ctx.rotate(Math.random() * 0.005); // random rotation
+            i++;
+            if (i < txt.length) requestAnimationFrame(loop);
+            else {
+                setTimeout(() => {
+                    scene_.classList.remove('unsee');
+                    stage_.classList.add('unsee');
+                }, 1500);
+            }
+        }
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+      $('button').click(function() {
+        $("article").toggleClass("paused")
+      });
+    </script>
+</body>
+</html>
