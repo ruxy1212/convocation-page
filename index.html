@@ -140,187 +140,293 @@
       display: flex;
       align-items: center;
       position: relative;
-      /* mask-image: linear-gradient(to right, transparent 40% 100%, #000, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, #000, transparent); */
     }
 
-.list {
-  display: flex;
-  width: calc(
-    var(--width) * var(--imageQuantity) * 2
-  ); /* Double the width for seamless looping */
-  gap: calc(var(--width) / 4);
-  animation: autoScroll 20s linear infinite;
-}
+    .list {
+      display: flex;
+      width: calc(
+        var(--width) * var(--imageQuantity) * 2
+      );
+      gap: calc(var(--width) / 4);
+      animation: autoScroll 20s linear infinite;
+    }
 
-.list:hover {
-  animation-play-state: paused !important;
-}
+    .list:hover {
+      animation-play-state: paused !important;
+    }
 
-.item {
-  width: var(--width);
-  height: var(--height);
-  flex-shrink: 0;
-}
+    .item {
+      width: var(--width);
+      height: var(--height);
+      flex-shrink: 0;
+    }
 
-.item img {
-  width: 100%;
-  height: 100%;
-  transition: filter 0.5s ease-in-out;
-}
+    .item img {
+      width: 100%;
+      height: 100%;
+      transition: filter 0.5s ease-in-out;
+    }
 
-@keyframes autoScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
-  }
-}
+    @keyframes autoScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
+      }
+    }
 
-.slider[reverse="true"] .list {
-  animation: reverseScroll 20s linear infinite;
-}
+    .slider[reverse="true"] .list {
+      animation: reverseScroll 20s linear infinite;
+    }
 
-@keyframes reverseScroll {
-  0% {
-    transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
+    @keyframes reverseScroll {
+      0% {
+        transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
 
-.slider:hover .item img {
-  filter: grayscale(1);
-}
+    .slider:hover .item img {
+      filter: grayscale(1);
+    }
 
-.slider .item:hover img {
-  filter: grayscale(0);
-}
-.slider .item img{
-  object-fit: cover;
-  border-radius: 12px;
-}
+    .slider .item:hover img {
+      filter: grayscale(0);
+    }
+    .slider .item img{
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .custom-item {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.879);
+      padding: 12px;
+      border-radius: 12px;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      color: rgb(35, 4, 92);
+    }
+    .hint {
+      padding: 0 24px;
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      width: 100%;
+      & p {
+        padding: 10px;
+        border-radius: 12px;
+        background-color: white;
+        color: rgb(35, 4, 92);
+      }
+    }
   </style>
   <style>
-    .scrolling-wrapper {
-  width: 100%;
-  overflow: hidden;  /* Hide the overflowed text */
-  background-color: #f0f0f0;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    /* Styling for the form container */
+    .canvas_ .form-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
 
-/* Styling for the scrolling text */
-#scrolling-text {
-  display: inline-block;
-  white-space: nowrap;  /* Prevent line breaks */
-  animation: scroll-left 60s linear infinite;  /* Scrolls infinitely */
-  font-size: 24px;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  padding-left: 100%; /* Start from the right */
-}
+    .canvas_ .form-container:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(100%); /* Start from the right */
-  }
-  100% {
-    transform: translateX(-100%); /* End at the left */
-  }
-}
+    /* Styling for form elements */
+    .canvas_ form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas_ input[type="password"] {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .canvas_ input[type="password"]:focus {
+      border-color: #684dff;
+    }
+
+    .canvas_ button {
+      padding: 10px;
+      background-color: #684dff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .canvas_ button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .canvas_ button:hover {
+      background-color: #3c28ae;
+    }
+
+    /* Error message */
+    .canvas_ .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Success message */
+    .hidden {
+      display: none !important;
+    }
+
+    .canvas_ #success-message {
+      margin-top: 20px;
+      color: green;
+      font-size: 16px;
+      display: none;
+    }
+
+    .canvas_ input.error {
+      border-color: red;
+    }
+
+    .canvas_ button.error {
+      background-color: red;
+    }
+  </style>
+  <style>
+    .loader {
+      width: 50px;
+      aspect-ratio: 1;
+      display: grid;
+      margin: 0 auto;
+    }
+    .loader::before,
+    .loader::after {    
+      content:"";
+      grid-area: 1/1;
+      --c:no-repeat radial-gradient(farthest-side,#684dff 92%,#0000);
+      background: 
+        var(--c) 50%  0, 
+        var(--c) 50%  100%, 
+        var(--c) 100% 50%, 
+        var(--c) 0    50%;
+      background-size: 12px 12px;
+      animation: l12 1s infinite;
+    }
+    .loader::before {
+      margin: 4px;
+      filter: hue-rotate(45deg);
+      background-size: 8px 8px;
+      animation-timing-function: linear
+    }
+
+    @keyframes l12 { 
+      100%{transform: rotate(.5turn)}
+    }
   </style>
 </head>
 <body>
     <div class="scene_ unsee">
-      <div class="slider" style="--width: 150px; --height: 50px; --imageQuantity: 10">
+      <div class="slider" style="--width: 150px; --height: 50px; --imageQuantity: 2">
         <div class="list">
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+              src="img/1.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+              src="img/2.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+              src="img/3.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+              src="img/4.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+              src="img/5.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+              src="img/6.JPG"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+              src="img/7.jpg"
               alt=""
             />
           </div>
           <!-- Duplicate items for seamless looping -->
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+              src="img/1.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+              src="img/2.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+              src="img/3.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+              src="img/4.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+              src="img/5.jpg"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
+              src="img/6.JPG"
               alt=""
             />
           </div>
           <div class="item">
             <img
-              src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+              src="img/7.jpg"
               alt=""
             />
           </div>
@@ -334,204 +440,160 @@
           style="--width: 200px; --height: 200px; --imageQuantity: 7"
         >
           <div class="list">
+            <div class="item" style="position: relative;">
+              <img
+                src="img/8.jpg"
+                alt=""
+              />
+              <div class="custom-item">
+                <p>Congratulations on your Convocation, mamita!</p>
+                <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
+                <p>Here's to many more achievements and making memories together!</p>
+              </div>
+            </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+                src="img/9.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+                src="img/10.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+                src="img/11.jpeg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+                src="img/12.jpeg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+                src="img/8.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
-                alt=""
-              />
-            </div>
-            <div class="item">
-              <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+                src="img/13.jpg"
                 alt=""
               />
             </div>
             <!-- Duplicate items for seamless looping -->
+            <div class="item" style="position: relative;">
+              <img
+                src="img/8.jpg"
+                alt=""
+              />
+              <div class="custom-item">
+                <p>Congratulations on your Convocation, mamita!</p>
+                <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
+                <p>Here's to many more achievements and making memories together!</p>
+              </div>
+            </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_1.png"
+                src="img/9.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_2.png"
+                src="img/10.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_3.png"
+                src="img/11.jpeg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_4.png"
+                src="img/12.jpeg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_5.png"
+                src="img/8.jpg"
                 alt=""
               />
             </div>
             <div class="item">
               <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_6.png"
-                alt=""
-              />
-            </div>
-            <div class="item">
-              <img
-                src="https://raw.githubusercontent.com/HoanghoDev/youtube_v2/main/auto_slider/images/slider2_7.png"
+                src="img/13.jpg"
                 alt=""
               />
             </div>
           </div>
         </div>
-        <!-- <div class="scrolling-wrapper">
-          <p id="scrolling-text">
-            Congratulations on your Convocation, mamita! I'm beyond proud of the intelligent, strong, and beautiful woman you have become. Here's to many more achievements and making memories together! Congratulations on your Convocation, mamita!
-          </p>
-        </div> -->
-      <!-- <div class="container h-100">
-        <div class="row align-items-center h-100">
-          <div class="container rounded">
-            <h1 class="text-center">Featured in:</h1>
-            <div class="slider">
-              <div class="logos">
-                <i class="fab fa-js fa-4x"></i>
-                <i class="fab fa-linkedin-in fa-4x"></i>
-                <i class="fab fa-dribbble fa-4x"></i>
-                <i class="fab fa-medium-m fa-4x"></i>
-                <i class="fab fa-github fa-4x"></i>
-                <div class="fab d-flex justify-content-center align-items-center p-3 bg-white">
-                  <p>Congratulations on your Convocation, mamita!</p>
-                  <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
-                  <p>Here's to many more achievements and making memories together!</p>
-                </div>
-              </div>
-              <div class="logos">
-                <i class="fab fa-js fa-4x"></i>
-                <i class="fab fa-linkedin-in fa-4x"></i>
-                <i class="fab fa-dribbble fa-4x"></i>
-                <i class="fab fa-medium-m fa-4x"></i>
-                <i class="fab fa-github fa-4x"></i>
-                <div class="fab d-flex justify-content-center align-items-center p-3 bg-white">
-                  <p>Congratulations on your Convocation, mamita!</p>
-                  <p>I'm beyond proud of the intelligent, strong and beautiful woman you have become.</p>
-                  <p>Here's to many more achievements and making memories together!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="stage_">
-        <canvas class="canvas_" ></canvas>
+      <div class="canvas_">
+        <div class="form-container">
+          <div class="loader hidden"></div>
+          <form id="passwordForm" onsubmit="validatePassword(event)">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button id="form-submit" disabled type="submit">Submit</button>
+            <p id="error-message" class="error-message">Incorrect password. Please try again.</p>
+          </form>
+          <div id="success-message" class="hidden">
+            <p>Access granted! You've entered the correct password.</p>
+          </div>
+        </div>
+      </div>
+      <div class="hint hidden">
+        <p>Hover/touch an image to stop scrolling, touch outside area to allow scroll again</p>
+      </div>
     </div>
     <script>
-      var stage_ = document.querySelector('.stage_');
-      var scene_ = document.querySelector('.scene_'), canvas_ = stage_.querySelector('.canvas_'), multiplier_ = 1;
-      var sy1_, sy2_, sy3_, sy4_, sy5_;
-    if(winSize < 600){
-        msg_ = "Congratz on your convoc ation ceremony";
-        canvas_.width = Math.floor(winSize*0.8);
-        multiplier_ = 0.6;
-        canvas_.height = 600;
-        sy1_ = 40; sy2_ = 50; sy3_ = 60; sy4_ = 70; sy5_ = 80;
-    }else{
-        canvas_.width = 630;
-        canvas_.height = 450;
-        sy1_ = 50; sy2_ = 60; sy3_ = 80; sy4_ = 90; sy5_ = 100;
-    }
-    let ctx = stage_.querySelector('canvas').getContext('2d');
-    dashLen = 220*multiplier_, dashOffset = dashLen, speed = 45,
-    txt = msg_, x = 20*multiplier_, y = 60*multiplier_, i = 0, lineMax = canvas_.width - 30; //"STROKE-ON CANVAS"
+      var doneLoading = false;
+      function validatePassword(event) {
+        event.preventDefault();
+        if(!doneLoading) return;
 
-    ctx.font = "50px Comic Sans MS, cursive, TSCu_Comic, sans-serif"; 
-    ctx.lineWidth = 5*multiplier_; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
-    ctx.strokeStyle = ctx.fillStyle = "#5d44e7";
+        const passwordInput = document.getElementById("password");
+        const errorMessage = document.getElementById("error-message");
+        const successMessage = document.getElementById("success-message");
+        const stage_ = document.querySelector('.stage_'), scene_ = document.querySelector('.scene_');
+        const correctPassword = "2024";
 
-    (function loop() {
-        ctx.clearRect(0, y-sy1_, stage_.width, sy5_); // Clear the area where characters are drawn
-        ctx.setLineDash([dashLen - dashOffset, dashOffset - speed]); // create a long dash mask
-        dashOffset -= speed; // reduce dash length
-        ctx.strokeText(txt[i], x, y); // stroke letter
-
-        if (dashOffset > 0) {
-            requestAnimationFrame(loop); // animate
+        // Check if the entered password matches the correct one
+        if (passwordInput.value === correctPassword) {
+          // Password is correct, show the success message
+          successMessage.style.display = "block";
+          errorMessage.style.display = "none";
+          document.querySelector('#passwordForm').style.display = "none";
+          document.querySelector('.loader').classList.remove('hidden');
+          document.querySelector('.hint').classList.remove('hidden');
+          passwordInput.classList.remove("error");
+          passwordInput.value = '';
+            setTimeout(() => {
+              scene_.classList.remove('unsee');
+              stage_.classList.add('unsee');
+          }, 5000);
         } else {
-            ctx.fillText(txt[i], x, y); // fill final letter
-            dashOffset = dashLen; // prep next char
-            x += ctx.measureText(txt[i]).width + ctx.lineWidth * Math.random();
-            // Check if the width exceeds the lineMax
-            if (x > lineMax) {
-                // Check if the next character is a space
-                if (txt[i] !== ' ' && txt[i + 1] !== ' ') {
-                    // Backtrack to the last space character
-                    while (i >= 0 && txt[i] !== ' ') {
-                        i--;
-                        let letterWidth = ctx.measureText(txt[i]).width; 
-                        x -= letterWidth + ctx.lineWidth; // Move back by the width of the letter
-                        ctx.clearRect(x, y-sy2_, letterWidth+ctx.lineWidth, sy4_);
-                    }
-                    // Move to the next line
-                    x = 21; // Reset x to the beginning of the line
-                    y += sy3_; // Move down to the next line
-                } else {
-                    // Move to the next line without breaking the word
-                    x = 21; // Reset x to the beginning of the line
-                    y += sy3_; // Move down to the next line
-                }
-                // Clear the area where characters are drawn for the next line
-                ctx.clearRect(0, y-sy2_, stage_.width, sy5_);
-            }
-            ctx.setTransform(1, 0, 0, 1, 0, 3 * Math.random()); // random y-delta
-            ctx.rotate(Math.random() * 0.005); // random rotation
-            i++;
-            if (i < txt.length) requestAnimationFrame(loop);
-            else {
-                setTimeout(() => {
-                    scene_.classList.remove('unsee');
-                    stage_.classList.add('unsee');
-                }, 1500);
-            }
+          // Password is incorrect, show the error message
+          errorMessage.style.display = "block";
+          passwordInput.classList.add("error");
+          passwordInput.value = '';
         }
-      })();
+      }
+      window.onload = function() {
+        document.querySelector('#form-submit').removeAttribute('disabled');
+        doneLoading = true;
+      };
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
